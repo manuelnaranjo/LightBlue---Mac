@@ -49,7 +49,7 @@ setup(name="lightblue",
     description="Cross-platform Python Bluetooth library for Mac OS X, GNU/Linux and Python for Series 60.",
     long_description="LightBlue is a cross-platform Python Bluetooth library for Mac OS X, GNU/Linux and Python for Series 60. It provides support for device and service discovery (with and without end-user GUIs), a standard socket interface for RFCOMM sockets, sending and receiving of files over OBEX, advertising of RFCOMM and OBEX services, and access to local device information.",
     license="GPL",
-    packages=package,
+    packages=packages,
     package_dir=package_dir,
     ext_modules=getextensions(),
     classifiers = [ "Development Status :: 3 - Alpha",
@@ -77,11 +77,11 @@ def install_LightAquaBlue():
     else:
         os.chdir("src/mac/LightAquaBlue-10.5.0")
     args = ['xcodebuild', 'install', 
-        '-target'. 'LightAquaBlue',
+        '-target', 'LightAquaBlue',
         '-configuration', 'Release',
         'DSTROOT=%s' % dstroot,
         'INSTALL_PATH=/Library/Frameworks',
-        'DEPLOYMENT_LOCATION=YES'
+        'DEPLOYMENT_LOCATION=YES' ]
     print " ".join(args)
     os.system(" ".join(args))
 
