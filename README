@@ -1,0 +1,4 @@
+This project intends to be an upgrade to LightBlue[1] for MacOSX to make it a 
+bit more pythonic, specially for making installation a bit easier!
+
+[1] http://lightblue.sourceforge.net/
