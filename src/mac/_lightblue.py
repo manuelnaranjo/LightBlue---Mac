@@ -19,6 +19,7 @@
 
 import types
 import warnings
+import platform
 
 import Foundation
 import AppKit
@@ -30,6 +31,7 @@ import _lightbluecommon
 import _macutil
 import _bluetoothsockets
 
+release = [int(b) for b in  platform.release().split(".")]
 
 # public attributes
 __all__ = ("finddevices", "findservices", "finddevicename", 
@@ -464,9 +466,11 @@ class _AsyncDeviceInquiry(Foundation.NSObject):
     def deviceInquiryComplete_error_aborted_(self, inquiry, err, aborted):
         if self.cb_completed:
             self.cb_completed(err, aborted)
+
+    signature = "v@:@iZ" if release >= [10, 6, 0] else "v@:@iB"
     deviceInquiryComplete_error_aborted_ = objc.selector(
-        deviceInquiryComplete_error_aborted_, signature="v@:@iB")
-             
+        deviceInquiryComplete_error_aborted_, signature=signature)
+
     # - (void)deviceInquiryStarted:(IOBluetoothDeviceInquiry*)sender;             
     def deviceInquiryStarted_(self, inquiry):
         if self.cb_started:
